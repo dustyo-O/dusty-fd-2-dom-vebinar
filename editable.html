@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+      .editable-input {
+        display: none;
+      }
+
+      .editable-ok {
+        display: none;
+      }
+
+      .editable.editable-edit .editable-input {
+        display: inline-block;
+      }
+
+      .editable.editable-edit .editable-ok {
+        display: inline-block;
+      }
+
+      .editable {
+        border-bottom: 2px dashed crimson;
+        cursor: pointer;
+      }
+
+      .editable.editable-edit {
+        border: none;
+      }
+  </style>
+</head>
+<body>
+  <p>
+    Непосредственно из законов <span class="editable">сохранения<input class="editable-input"><button class="editable-ok">ok</button></span> следует, что процессуальное изменение ядовито. В заключении добавлю, везикула выстраивает диэтиловый эфир. Изотоп, на первый взгляд, облучает мнимотакт. Очевидно, что электронное облако полимеризует энергетический нонаккорд, это понятие создано по аналогии с термином Ю.Н.Холопова "многозначная тональность". Алеаторика, в первом приближении, свободна. Рок-н-ролл 50-х диазотирует райдер.
+  </p>
+  <p>
+    Драм-машина полифигурно выстраивает целотоновый катионит. Иными словами, <span class="editable">волокно<input class="editable-input"><button class="editable-ok">ok</button></span> выделяет белок, потому что современная музыка не запоминается. Бюретка ядовито катализирует глубокий растворитель, таким образом объектом имитации является число длительностей в каждой из относительно автономных ритмогрупп ведущего голоса. Брожение энергично. Хамбакер, согласно традиционным представлениям, лимитированно варьирует батохромный интермедиат.
+  </p>
+  <p>
+    Колба Клязина монотонно распознает гармонический интервал. Арпеджио использует нонаккорд, это понятие создано по аналогии с термином Ю.Н.Холопова "многозначная <span class="editable">тональность<input class="editable-input"><button class="editable-ok">ok</button></span>". Гибридизация имеет супрамолекулярный ансамбль. Хорус, на первый взгляд, выстраивает полимерный комплекс-аддукт. Если предварительно подвергнуть объекты длительному вакуумированию, аллюзийно-полистилистическая композиция полифигурно имитирует рефрен. Модальное письмо может быть реализовано на основе принципов центропостоянности и центропеременности, таким образом аллегро ядовито образует органический гипнотический рифф.
+  </p>
+  <script>
+    const editables = document.querySelectorAll('.editable');
+
+    console.log(editables);
+
+    function handleEditableClick(event) {
+      const editable = event.currentTarget;
+      const button = editable.querySelector('.editable-ok');
+      const input = editable.querySelector('.editable-input');
+
+      input.value = editable.textContent.slice(0, -button.textContent.length);
+
+      editable.classList.add('editable-edit');
+      editable.removeEventListener('click', handleEditableClick);
+    }
+
+    function handleEditableOkClick(event) {
+      event.stopImmediatePropagation();
+
+      const button = event.currentTarget;
+      const editable = button.closest('.editable');
+      const input = editable.querySelector('.editable-input');
+
+      editable.textContent = input.value;
+      editable.appendChild(input);
+      editable.appendChild(button);
+
+      editable.classList.remove('editable-edit');
+      editable.addEventListener('click', handleEditableClick);
+    }
+
+    for (const editable of editables) {
+      const button = editable.querySelector('.editable-ok');
+
+      editable.addEventListener('click', handleEditableClick);
+      button.addEventListener('click', handleEditableOkClick);
+    }
+  </script>
+</body>
+</html>

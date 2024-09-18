@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <button class="main-button promo">Кнопка</button>
+  <button class="main-button promo">Кнопка</button>
+  <button class="main-button">Кнопка</button>
+  <button class="promo">Кнопка</button>
+  <script>
+    const mainButtons = document.querySelectorAll('.main-button');
+    const promos = document.querySelectorAll('.promo');
+
+    const handleMainButtonClick = () => {
+      console.log('Привет!');
+    };
+
+    for (const mainButton of mainButtons) {
+      mainButton.addEventListener('click', handleMainButtonClick);
+    }
+
+    const handlePromoMouseEnter = (event) => {
+      event.currentTarget.textContent = 'Нажми меня и получи скидку!'
+    };
+
+    for (const promo of promos) {
+      promo.addEventListener('mouseenter', handlePromoMouseEnter);
+    }
+  </script>
+</body>
+</html>
